@@ -7,6 +7,8 @@ class WhackAMoleApp(tk.Frame):
     def __init__(self, master, rows=5, columns=5):
         super().__init__(master)
         
+        self.master.title("Whack a Mole")
+
         self._rows = rows
         self._columns = columns
 

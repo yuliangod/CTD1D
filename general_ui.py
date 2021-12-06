@@ -18,7 +18,7 @@ Feed the snake with adequate food to fatten the snake and slow it down.
 After winning, you can escape the snake and board the ship.
         """)
         self.snake_button = tk.Button(text="Snake", command=lambda: self.snake_button_command(self.whack_a_mole_button, snake_message))
-        self.snake_button.pack()
+        self.snake_button.pack(pady=10)
 
         wam_message = ("""
 After you escaped the snake, you're getting ready to board the ship to embark on your treasure hunt journey. 
@@ -26,7 +26,7 @@ After you escaped the snake, you're getting ready to board the ship to embark on
 However, he must first collect enough gold resources to help for the hunt. 
         """)
         self.whack_a_mole_button = tk.Button(text="Whack A Mole", command= lambda: self.new_window_command(WhackAMoleApp, self.hangman_button, wam_message), state="disabled")
-        self.whack_a_mole_button.pack()
+        self.whack_a_mole_button.pack(pady=10)
 
         hangman_message = ("""
 Upon successfully collecting the good resources, you set sail to find your treasure. 
@@ -34,7 +34,7 @@ Upon successfully collecting the good resources, you set sail to find your treas
 However, the navigation system on board only allows you to start the engine if you're able to pass a basic navigation test.          
         """)
         self.hangman_button = tk.Button(text="Hangman", command= lambda: self.new_window_command(HangmanApp, self.type_racer_button, hangman_message), state="disabled")
-        self.hangman_button.pack()
+        self.hangman_button.pack(pady=10)
 
         typeracer_message = ("""
 After clearing the navigation test, you begin sailing to the treasure island. 
@@ -44,10 +44,10 @@ However, you soon notices that pirates are quickly approaching the island too.
 In order to get to the island before the pirates, you must increase the ship’s speed.        
         """)
         self.type_racer_button = tk.Button(text="Typeracer", command= lambda: self.new_window_command(TyperacerApp, self.battleship_button, typeracer_message), state="disabled")
-        self.type_racer_button.pack()
+        self.type_racer_button.pack(pady=10)
 
         self.battleship_button = tk.Button(text="Battleship", command=self.battleship_command, state="disabled")
-        self.battleship_button.pack()
+        self.battleship_button.pack(pady=10)
 
     def on_closing(self, app, window, button_enable_on_win):
         #window is to choose which window to destroy, index is to edit won_list to enable buttons
@@ -59,7 +59,7 @@ In order to get to the island before the pirates, you must increase the ship’s
 
     def new_window_command(self, window_class, button_enable_on_win, message):
         self.master.withdraw()
-        messagebox.showinfo("", message)
+        messagebox.showinfo("Info", message)
         self.new_window = tk.Toplevel(self.master)
         self.new_window.geometry("300x300")
 
@@ -70,17 +70,18 @@ In order to get to the island before the pirates, you must increase the ship’s
 
     #open snake game when button is clicked
     def snake_button_command(self, button_enabled_on_win,  message):
-        messagebox.showinfo("", message)
+        messagebox.showinfo("Info", message)
         button_enabled_on_win["state"] = "active"
         import snake
 
     def battleship_command(self):
-        messagebox.showinfo("", "Please go back to your python shell for the final game")
+        messagebox.showinfo("Info", "Please go back to your python shell for the final game")
         self.master.destroy()
         import battleship
 
 if __name__ == "__main__":
     root = tk.Tk()
     root.geometry("300x300")
+    root.title("Treasure hunt!")
     myapp = App(root)
     myapp.mainloop()

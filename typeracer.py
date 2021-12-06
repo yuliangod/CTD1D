@@ -9,6 +9,8 @@ import random
 class TyperacerApp(Frame):
     def __init__(self, master):
         super().__init__(master)      
+
+        self.master.title("Typeracer")
         
         self.info_frame = Frame(self.master)
         self.info_frame.pack()
@@ -55,6 +57,7 @@ class TyperacerApp(Frame):
         Time_taken = (self.end - self.start)/60
         Type_speed = round (15 / Time_taken , 2 ) 
         if Type_speed >= 12:   
+            self.won_booelan = True
             self.end_game_label = Label(self.game_frame, text = 'Congrats!!! Your ship is moving at ' + str(Type_speed) + 'words/min. You were faster than the pirates')
             self.end_game_label.grid(row=2, column=0)
         else :
@@ -67,7 +70,6 @@ class TyperacerApp(Frame):
         self.check()  #Bind the Enter Key to Call an event   
 
         if self.num_words_typed == 15: #end game when 15 words are typed
-            self.won_booelan = True
             self.end = time.time()
             self.word_label.destroy()
             self.word_input.destroy()

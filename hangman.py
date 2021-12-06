@@ -11,6 +11,7 @@ class HangmanApp(tk.Frame):
     def __init__(self,master):
         super().__init__(master)
 
+        self.master.title("Hangman")
         #info frame
         self.info_frame = tk.Frame(self.master)
         self.info_frame.pack()
@@ -89,20 +90,20 @@ class HangmanApp(tk.Frame):
         if len(user_input)==1:
 
             if user_input not in self.alphabet:
-                messagebox.showinfo("","You did not enter a letter. Check your input and try again")
+                messagebox.showinfo("Info","You did not enter a letter. Check your input and try again")
                 
                 self.guess_frame.destroy()
                 self.game_start_3_function()
 
             elif user_input in self.letters_guessed:
-                messagebox.showinfo("","You have already guessed the letter before. Try another letter!")
+                messagebox.showinfo("Info","You have already guessed the letter before. Try another letter!")
                
 
                 self.guess_frame.destroy()
                 self.game_start_3_function()
 
             elif user_input not in self.word:
-                messagebox.showinfo("","Oops! That letter is not in the word. Guess another one!")
+                messagebox.showinfo("Info","Oops! That letter is not in the word. Guess another one!")
                 self.letters_guessed.append(user_input)
                 self.tries -=1
 
@@ -110,21 +111,21 @@ class HangmanApp(tk.Frame):
                 self.game_start_3_function()
 
             elif user_input in self.word:
-                messagebox.showinfo("","Great! You guessed a correct letter!")
+                messagebox.showinfo("Info","Great! You guessed a correct letter!")
                 self.letters_guessed.append(user_input)
 
                 self.guess_frame.destroy()
                 self.game_start_3_function()
 
             else:
-                messagebox.showinfo("","Check your entry! You might have entered a wrong input")
+                messagebox.showinfo("Info","Check your entry! You might have entered a wrong input")
                 
                 self.guess_frame.destroy()
                 self.game_start_3_function()
 
         elif len(user_input) == len(self.word):
             if user_input == self.word:
-                messagebox.showinfo("","Awesome! You guessed the word correctly!")
+                messagebox.showinfo("Info","Awesome! You guessed the word correctly!")
                 self.decision_1_submit_button.destroy()
                 self.guessed = True
                 decision_2_submit_button = Button(self.guess_frame, text="Next Country", command=self.game_start_1_function)
@@ -133,14 +134,14 @@ class HangmanApp(tk.Frame):
                 
                 
             else:
-                messagebox.showinfo("","Sorry, wrong guess! :((( Please try again!")
+                messagebox.showinfo("Info","Sorry, wrong guess! :((( Please try again!")
                 self.tries -=1
 
                 self.guess_frame.destroy()
                 self.game_start_3_function()
 
         else:
-            messagebox.showinfo("","The length of your guess is not the same as the length of the correct word. Try again.")
+            messagebox.showinfo("Info","The length of your guess is not the same as the length of the correct word. Try again.")
             self.tries -=1
             self.guess_frame.destroy()
             self.game_start_3_function()
