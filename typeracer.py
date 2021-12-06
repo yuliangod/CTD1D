@@ -30,7 +30,7 @@ class TyperacerApp(Frame):
                 'forest', 'insert','yacht','green','recycle','dustbin','classroom','keyboard',
                 'damage','kitchen','jacket','ivory','stationary','lanyard','lockscreen','printer'] 
         
-        self.won_booelan = False
+        self.won_boolean = False
 
     def check(self):
       
@@ -57,8 +57,8 @@ class TyperacerApp(Frame):
         Time_taken = (self.end - self.start)/60
         Type_speed = round (15 / Time_taken , 2 ) 
         if Type_speed >= 12:   
-            self.won_booelan = True
-            self.end_game_label = Label(self.game_frame, text = 'Congrats!!! Your ship is moving at ' + str(Type_speed) + 'words/min. You were faster than the pirates')
+            self.won_boolean = True
+            self.end_game_label = Label(self.game_frame, text = 'Congrats!!! Your ship is moving at ' + str(Type_speed) + 'words/min.\nYou were faster than the pirates')
             self.end_game_label.grid(row=2, column=0)
         else :
             self.try_again_label = Label(self.game_frame, text = 'Your ship is moving at ' + str(Type_speed) + 'words/min, whch is too slow. The pirates have caught up with you. Try again!')
