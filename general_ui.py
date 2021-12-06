@@ -42,11 +42,11 @@ However, you soon notices that pirates are quickly approaching the island too.
 
 In order to get to the island before the pirates, you must increase the ship’s speed.        
         """)
-        self.type_racer_button = tk.Button(text="Typeracer", command= lambda: self.new_window_command(HangmanApp, self.type_racer_button), state="disabled")
+        self.type_racer_button = tk.Button(text="Typeracer", command= lambda: self.new_window_command(HangmanApp, self.battleship_button, typeracer_message), state="active")
         self.type_racer_button.pack()
 
-        self.test_button = tk.Button(text="Test", command=self.test_command)
-        self.test_button.pack()
+        self.battleship_button = tk.Button(text="Battleship", command=self.battleship_command)
+        self.battleship_button.pack()
 
     def on_closing(self, app, window, button_enable_on_win):
         #window is to choose which window to destroy, index is to edit won_list to enable buttons
@@ -77,6 +77,11 @@ In order to get to the island before the pirates, you must increase the ship’s
     def test_command(self):
         from test import test
         test()
+
+    def battleship_command(self):
+        messagebox.showinfo("", "Please go back to your python shell for the final game")
+        self.master.destroy()
+        import battleship
 
 if __name__ == "__main__":
     root = tk.Tk()

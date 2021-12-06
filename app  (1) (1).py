@@ -6,7 +6,7 @@ from tkinter import *
 import time
 import random
 
-class HangmanApp(Frame):
+class App(Frame):
     def __init__(self, master):
         super().__init__(master)      
         
@@ -28,8 +28,6 @@ class HangmanApp(Frame):
                 'forest', 'insert','yacht','green','recycle','dustbin','classroom','keyboard',
                 'damage','kitchen','jacket','ivory','stationary','lanyard','lockscreen','printer'] 
         
-        self.won_boolean = False
-
     def check(self):
       
         self.word_wrong_label = Label(self.game_frame, text = ' ')  
@@ -45,9 +43,9 @@ class HangmanApp(Frame):
         elif word == self.random_word:  #word is spelt correctly
             self.num_words_typed += 1
             self.game_frame.destroy()
-            print(self.random_word)
+            #print(self.random_word)
             self.word_list.remove(self.random_word)
-            print(self.word_list)
+            #print(self.word_list)
             self.game_wc()      
             
             
@@ -57,7 +55,6 @@ class HangmanApp(Frame):
         if Type_speed >= 12:   
             self.end_game_label = Label(self.game_frame, text = 'Congrats!!! Your ship is moving at ' + str(Type_speed) + 'words/min. You were faster than the pirates')
             self.end_game_label.grid(row=2, column=0)
-            self.won_boolean=True
         else :
             self.try_again_label = Label(self.game_frame, text = 'Your ship is moving at ' + str(Type_speed) + 'words/min, whch is too slow. The pirates have caught up with you. Try again!')
             self.try_again_label.grid(row=2, column=0)
@@ -68,7 +65,9 @@ class HangmanApp(Frame):
         self.check()  #Bind the Enter Key to Call an event   
 
         if self.num_words_typed == 15: #end game when 15 words are typed
-            self.end = time.time() 
+            self.end = time.time()
+            self.word_label.destroy()
+            self.word_input.destroy()
             #self.enter_button.destroy()
             self.end_game()
 
@@ -93,12 +92,11 @@ class HangmanApp(Frame):
         #self.enter_button = Button(self.game_frame, text="Enter", command=self.enter_button_command)
         #self.enter_button.grid(row=1,column=0)  
         self.master.bind('<Return>' , self.enter_button_command)
-
-if __name__ == "__main__":       
-    root = Tk()
-    root.geometry("300x300")
-    myapp = HangmanApp(root)
-    myapp.mainloop()
+       
+root = Tk()
+root.geometry("300x300")
+myapp = App(root)
+myapp.mainloop()
 
 
 
