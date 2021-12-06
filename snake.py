@@ -66,7 +66,7 @@ ques.hideturtle()
 ques.goto(0, 200)
 
 #Rules
-str1 = ['RULES', '1) Use W,A,S,D to move the snake','2) Based on the question move the snake to the food of given colour ', '<Y>-YELLOW', '<R>-RED']
+str1 = ['RULES', '1) Use W,A,S,D to move the snake','2) Based on the question move the snake', 'to the food of given colour ', '<Y>-YELLOW', '<R>-RED']
 draw1 = turtle.Turtle()
 draw1.speed(0)
 draw1.shape("square")
