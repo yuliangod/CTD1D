@@ -10,6 +10,8 @@ class WhackAMoleApp(tk.Frame):
         self._rows = rows
         self._columns = columns
 
+        self._pass_score = 10   #minimum points needed to win the game
+
         #app layout
         self.info_frame = tk.Frame(self.master)
         self.info_frame.pack()
@@ -20,7 +22,7 @@ class WhackAMoleApp(tk.Frame):
 
         self.start_frame = tk.Frame(self.master)
         self.start_frame.pack()
-        self.start_info_label = tk.Label(self.start_frame, text="Click the green mole but not the red mole!\n Score above 13 points to win!")
+        self.start_info_label = tk.Label(self.start_frame, text=f"Click the gold bars to score points!\n\nDo not to click on the bombs as\npoints will be deducted!\n\nScore above {self._pass_score} points to win!")
         self.start_info_label.grid(row=0, column=0)
         self.start_button = tk.Button(self.start_frame, text="start", command=self.threaded_start_command)
         self.start_button.grid(row=1, column=0)
@@ -40,8 +42,8 @@ class WhackAMoleApp(tk.Frame):
         self.won_boolean = False    #check if game has been won already
 
         #images
-        self.gold_photo = tk.PhotoImage(file="goldbar.png")
-        self.bomb_photo = tk.PhotoImage(file="bomb.png")
+        self.gold_photo = tk.PhotoImage(file="images/goldbar.png")
+        self.bomb_photo = tk.PhotoImage(file="images/bomb.png")
     
     def start_command(self):
         self.create_buttons()
@@ -141,18 +143,18 @@ class WhackAMoleApp(tk.Frame):
        
 
     #game over screen 
-    def game_over(self, pass_score=10):     #update pass score to set points needed to pass
+    def game_over(self):     #update pass score to set points needed to pass
         self.game_frame.destroy()
         self.game_over_frame = tk.Frame(self.master)
         self.game_over_frame.pack()
 
 
-        if self.score >= pass_score:
-            self.game_over_label = tk.Label(self.game_over_frame, text=f"Congrats, you scored over {pass_score}, \nyou can move on to the next stage now!")
+        if self.score >= self._pass_score:
+            self.game_over_label = tk.Label(self.game_over_frame, text=f"Congrats, you scored over {self._pass_score}, \nyou can move on to the next stage now!")
             self.game_over_label.pack()
             self.won_boolean = True
         else:
-            self.game_over_label = tk.Label(self.game_over_frame, text=f"Sorry, you scored below {pass_score}, \nrestart the game?")
+            self.game_over_label = tk.Label(self.game_over_frame, text=f"Sorry, you scored below {self._pass_score}, \nrestart the game?")
             self.game_over_label.pack()
 
             self.restart_game_button = tk.Button(self.game_over_frame, text="Restart game", command=self.restart_game_command)
