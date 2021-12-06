@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from whack_a_mole import WhackAMoleApp
+from typeracer import TyperacerApp
 from hangman import HangmanApp
 
 class App(tk.Frame):
@@ -42,16 +43,15 @@ However, you soon notices that pirates are quickly approaching the island too.
 
 In order to get to the island before the pirates, you must increase the ship’s speed.        
         """)
-        self.type_racer_button = tk.Button(text="Typeracer", command= lambda: self.new_window_command(HangmanApp, self.battleship_button, typeracer_message), state="active")
+        self.type_racer_button = tk.Button(text="Typeracer", command= lambda: self.new_window_command(TyperacerApp, self.battleship_button, typeracer_message), state="disabled")
         self.type_racer_button.pack()
 
-        self.battleship_button = tk.Button(text="Battleship", command=self.battleship_command)
+        self.battleship_button = tk.Button(text="Battleship", command=self.battleship_command, state="disabled")
         self.battleship_button.pack()
 
     def on_closing(self, app, window, button_enable_on_win):
         #window is to choose which window to destroy, index is to edit won_list to enable buttons
         window.destroy()
-        print(app.won_boolean)
         self.master.deiconify()
 
         if app.won_boolean == True:
@@ -73,10 +73,6 @@ In order to get to the island before the pirates, you must increase the ship’s
         messagebox.showinfo("", message)
         button_enabled_on_win["state"] = "active"
         import snake
-        
-    def test_command(self):
-        from test import test
-        test()
 
     def battleship_command(self):
         messagebox.showinfo("", "Please go back to your python shell for the final game")

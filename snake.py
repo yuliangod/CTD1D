@@ -197,7 +197,7 @@ wn.onkeypress(go_left, "a")
 wn.onkeypress(go_right, "d")
 
 # main game loop
-while high_score<10:
+while high_score<100:
     wn.update()
 
     if head.xcor() > 290 or head.xcor() < -290 or head.ycor() > 290 or head.ycor() < -290:  # boundaries

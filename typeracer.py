@@ -6,7 +6,7 @@ from tkinter import *
 import time
 import random
 
-class App(Frame):
+class TyperacerApp(Frame):
     def __init__(self, master):
         super().__init__(master)      
         
@@ -28,6 +28,8 @@ class App(Frame):
                 'forest', 'insert','yacht','green','recycle','dustbin','classroom','keyboard',
                 'damage','kitchen','jacket','ivory','stationary','lanyard','lockscreen','printer'] 
         
+        self.won_booelan = False
+
     def check(self):
       
         self.word_wrong_label = Label(self.game_frame, text = ' ')  
@@ -65,6 +67,7 @@ class App(Frame):
         self.check()  #Bind the Enter Key to Call an event   
 
         if self.num_words_typed == 15: #end game when 15 words are typed
+            self.won_booelan = True
             self.end = time.time()
             self.word_label.destroy()
             self.word_input.destroy()
@@ -92,11 +95,12 @@ class App(Frame):
         #self.enter_button = Button(self.game_frame, text="Enter", command=self.enter_button_command)
         #self.enter_button.grid(row=1,column=0)  
         self.master.bind('<Return>' , self.enter_button_command)
-       
-root = Tk()
-root.geometry("300x300")
-myapp = App(root)
-myapp.mainloop()
+
+if __name__ == "__main__":       
+    root = Tk()
+    root.geometry("300x300")
+    myapp = TyperacerApp(root)
+    myapp.mainloop()
 
 
 
