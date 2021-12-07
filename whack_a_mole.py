@@ -30,7 +30,6 @@ class WhackAMoleApp(tk.Frame):
         self.start_button.grid(row=1, column=0)
 
         self.game_frame = tk.Frame(self.master)
-        self.game_frame.pack()
     
         #scoring
         self.score = 0
@@ -51,6 +50,8 @@ class WhackAMoleApp(tk.Frame):
         self.create_buttons()
         self.enable_rand_button()
         self.start_frame.destroy()
+
+        self.game_frame.pack()
     
     #fix problem when fake mole is the first mole to pop out
     def threaded_start_command(self):
