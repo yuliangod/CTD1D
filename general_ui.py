@@ -43,7 +43,7 @@ However, you soon notices that pirates are quickly approaching the island too.
 
 In order to get to the island before the pirates, you must increase the ship’s speed.        
         """)
-        self.type_racer_button = tk.Button(text="Typeracer", command= lambda: self.new_window_command(TyperacerApp, self.battleship_button, typeracer_message), state="active")
+        self.type_racer_button = tk.Button(text="Typeracer", command= lambda: self.new_window_command(TyperacerApp, self.battleship_button, typeracer_message), state="disabled")
         self.type_racer_button.pack(pady=10)
 
         self.battleship_button = tk.Button(text="Battleship", command=self.battleship_command, state="disabled")
